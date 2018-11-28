@@ -1,0 +1,32 @@
+---
+- connection: local
+  block:
+
+    # create config folder
+    - name: create ssh config directory
+      run_once: true
+      file:
+        path: "~/.ssh/config.d/"
+        state: directory
+
+    # create block in config file for environment
+    - name: add host entry to config file
+      blockinfile:
+        path: "~/.ssh/config.d/{{ environment_name }}"
+        create: yes
+        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ inventory_hostname }}"
+        block: |
+
+          Host {{ environment_name }}-{{ inventory_hostname }}
+          Hostname {{ ansible_ssh_host }}
+          User {{ box_user }}
+          Port 22
+
+
+    # include env config file in main
+    - name: add include statement in main ssh config file
+      run_once: yes
+      lineinfile:
+        insertbefore: BOF
+        path: "~/.ssh/config"
+        line: "Include config.d/*\n"

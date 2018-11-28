@@ -1,0 +1,7 @@
+---
+
+- hosts: all
+  remote_user: "{{ box_user }}"
+  roles:
+    - role: authorize_ssh
+    - role: ssh-config-build

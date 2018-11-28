@@ -1,0 +1,10 @@
+secrets/.vault-token*
+*.retry
+
+# Configure files to be ignored in environments dir
+environments/*
+!environments/.gitkeep
+!README.md
+
+#  Test Stuff
+test.yml
