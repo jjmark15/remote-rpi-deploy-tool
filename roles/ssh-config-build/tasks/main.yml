@@ -19,7 +19,7 @@
 
           Host {{ environment_name }}-{{ inventory_hostname }}
           Hostname {{ ansible_ssh_host }}
-          User {{ box_user }}
+          User {{ ansible_user }}
           Port 22
 
 
