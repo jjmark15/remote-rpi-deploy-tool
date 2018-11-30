@@ -1,0 +1,13 @@
+---
+
+- name: create a sudo user
+  user:
+    name: "{{ remote_sudo_user }}"
+    state: present
+    # group: "{{ remote_sudo_user }}"
+    groups: pi adm dialout cdrom sudo audio video plugdev games users input netdev spi i2c gpio wheel
+    password: "{{ ansible_ssh_pass }}"
+
+- lineinfile:
+    line: "%wheel         ALL = (ALL) NOPASSWD: ALL"
+    path: /etc/sudoers
