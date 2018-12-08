@@ -7,10 +7,20 @@
       - vim
     state: latest
 
-- name: set default terminal editor
+- name: set default user editor
   lineinfile:
-    dest: ~/.profile
+    dest: "/home/{{ ansible_user }}/.profile"
     state: present
     line: "export EDITOR='vim'"
     regexp: "^export EDITOR="
     insertafter: EOF
+
+- name: set default sudo editor
+  become: true
+  lineinfile:
+    line: "Defaults editor=/usr/bin/vim"
+    insertbefore: BOF
+    state: present
+    regexp: "^Defaults editor="
+    dest: /etc/sudoers
+    validate: 'visudo -cf %s'
