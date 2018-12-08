@@ -18,9 +18,9 @@
         block: |
 
           Host {{ environment_name }}-{{ inventory_hostname }}
-          Hostname {{ ansible_ssh_host }}
+          Hostname {{ ansible_host }}
           User {{ ansible_user }}
-          Port 22
+          Port {{ ansible_port }}
 
 
     # include env config file in main
@@ -29,4 +29,4 @@
       lineinfile:
         insertbefore: BOF
         path: "~/.ssh/config"
-        line: "Include config.d/*\n"
+        line: "Include config.d/*"

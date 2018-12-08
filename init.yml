@@ -1,6 +1,12 @@
 ---
 
 - hosts: all
+  remote_user: "{{ ansible_default_user }}"
+  roles:
+    - role: create-sudo-user
+
+- hosts: all
+  remote_user: "{{ ansible_user }}"
   roles:
     - role: authorize_ssh
     - role: ssh-config-build
