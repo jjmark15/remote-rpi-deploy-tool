@@ -1,6 +1,8 @@
 ---
 
 - hosts: all
+  remote_user: "{{ default_user }}"
   roles:
+    - role: create-sudo-user
     - role: authorize_ssh
     - role: ssh-config-build
