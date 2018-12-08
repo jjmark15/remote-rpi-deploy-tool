@@ -2,12 +2,19 @@
 
 - name: create a sudo user
   user:
-    name: "{{ remote_sudo_user }}"
+    name: "{{ ansible_ssh_user }}"
     state: present
-    # group: "{{ remote_sudo_user }}"
-    groups: pi adm dialout cdrom sudo audio video plugdev games users input netdev spi i2c gpio wheel
+    groups: "{{ ansible_ssh_user }} adm dialout cdrom sudo audio video plugdev games users input netdev spi i2c gpio wheel"
     password: "{{ ansible_ssh_pass }}"
 
 - lineinfile:
     line: "%wheel         ALL = (ALL) NOPASSWD: ALL"
     path: /etc/sudoers
+
+- name: allow wheel group to have passwordless sudo
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD=ALL'
+    validate: 'visudo -cf %s'
