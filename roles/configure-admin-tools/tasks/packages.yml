@@ -2,15 +2,15 @@
 
 - name: install packages
   become: true
-  yum:
-    name: "{{ item.name }}"
+  apt:
+    name:
+      - vim
     state: latest
-  loop_with:
-    - { name: 'vim' }
 
 - name: set default terminal editor
   lineinfile:
-    dest: ~/.bashrc
+    dest: ~/.profile
     state: present
     line: "export EDITOR='vim'"
     regexp: "^export EDITOR="
+    insertafter: EOF
