@@ -1,3 +1,5 @@
 ---
 
-test: "hi there"
+ansible_default_user: "pi"
+ansible_user: "{{ ansible_default_user }}"
+ansible_port: 22

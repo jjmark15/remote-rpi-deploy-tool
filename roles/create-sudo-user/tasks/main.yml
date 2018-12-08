@@ -1,0 +1,24 @@
+---
+
+- name: Make sure we have a 'wheel' group
+  become: true
+  group:
+    name: wheel
+    state: present
+
+- name: Allow 'wheel' group to have passwordless sudo
+  become: true
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+- name: create a sudo user
+  become: true
+  user:
+    name: "{{ ansible_user }}"
+    state: present
+    groups: "{{ ansible_user }},adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,spi,i2c,gpio,wheel"
+    password: "{{ ansible_ssh_pass }}"
