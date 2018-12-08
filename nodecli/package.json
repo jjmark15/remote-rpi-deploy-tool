@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/jjmark15/rpi-ansible-setup/issues"
   },
-  "homepage": "https://github.com/jjmark15/rpi-ansible-setup#readme"
+  "homepage": "https://github.com/jjmark15/rpi-ansible-setup#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
 }
