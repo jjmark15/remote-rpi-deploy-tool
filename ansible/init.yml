@@ -4,6 +4,8 @@
   remote_user: "{{ ansible_default_user }}"
   roles:
     - role: create-sudo-user
+  vars:
+    - new_sudo_user: "{{ ansible_proc_user }}"
 
 - hosts: all
   remote_user: "{{ ansible_user }}"

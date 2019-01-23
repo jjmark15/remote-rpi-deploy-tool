@@ -19,7 +19,7 @@
 - name: create a sudo user
   become: true
   user:
-    name: "{{ ansible_user }}"
+    name: "{{ new_sudo_user }}"
     state: present
     groups: "wheel"
     append: yes
