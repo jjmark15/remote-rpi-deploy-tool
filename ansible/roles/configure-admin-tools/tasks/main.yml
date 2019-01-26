@@ -1,1 +1,3 @@
 - include: packages.yml
+- include: install-nvm.yml
+- include: configure-path.yml
