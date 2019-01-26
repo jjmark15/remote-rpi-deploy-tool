@@ -5,6 +5,10 @@
   apt:
     name:
       - vim
+      - git
+      - python3
+      - python3-pip
+      - docker.io
     state: latest
 
 - name: set default user editor
