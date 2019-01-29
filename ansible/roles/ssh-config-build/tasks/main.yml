@@ -21,6 +21,7 @@
           Hostname {{ ansible_host }}
           User {{ ansible_user }}
           Port {{ ansible_port }}
+          ForwardAgent yes
 
 
     # include env config file in main
