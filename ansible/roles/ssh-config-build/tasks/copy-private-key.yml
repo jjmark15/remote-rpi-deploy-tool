@@ -1,0 +1,9 @@
+---
+
+- name: copy private key to ssh directory
+  connection: local
+  copy:
+    decrypt: yes
+    dest: "{{ lookup('env','HOME') }}/.ssh/{{ environment_name }}-id_rsa"
+    src: "{{ inventory_dir }}/keys/id_rsa.enc"
+    mode: 0600

@@ -22,6 +22,7 @@
           User {{ ansible_user }}
           Port {{ ansible_port }}
           ForwardAgent yes
+          IdentityFile {{ lookup('env','HOME') }}/.ssh/{{ environment_name }}-id_rsa
 
 
     # include env config file in main
@@ -31,3 +32,5 @@
         insertbefore: BOF
         path: "~/.ssh/config"
         line: "Include config.d/*"
+
+- include_tasks: copy-private-key.yml
