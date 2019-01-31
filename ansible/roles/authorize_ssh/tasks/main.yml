@@ -1,7 +1,17 @@
 ---
 
-- name: Set authorized key for ssh_user copying it from current user
+- name: copy decrypted public key to tmp
+  connection: local
+  copy:
+    decrypt: yes
+    dest: "{{ inventory_dir }}/temp/id_rsa.pub"
+    src: "{{ inventory_dir }}/keys/id_rsa.pub.enc"
+    mode: 0644
+
+- name: Set authorized key for ssh_user copying it from decrypted vault file
   authorized_key:
     user: "{{ ansible_user }}"
     state: present
-    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    key: "{{ lookup('file', item) }}"
+  with_items:
+    - "{{ inventory_dir }}/temp/id_rsa.pub"
