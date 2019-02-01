@@ -15,10 +15,12 @@
     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
 
+# TODO: create better fix than removing password line
 - name: create a sudo user
   become: true
   user:
     name: "{{ ansible_user }}"
     state: present
-    groups: "{{ ansible_user }},adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,spi,i2c,gpio,wheel"
-    password: "{{ ansible_ssh_pass }}"
+    groups: "wheel"
+    append: yes
+    # password: "{{ ansible_ssh_pass }}"
