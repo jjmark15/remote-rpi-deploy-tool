@@ -8,6 +8,5 @@
 - hosts: all
   remote_user: "{{ ansible_user }}"
   roles:
-    - role: configure-admin-tools
     - role: authorize_ssh
-    - role: ssh-config-build
+    - role: configure-admin-tools
