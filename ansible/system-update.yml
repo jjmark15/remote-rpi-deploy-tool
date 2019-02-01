@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  remote_user: "{{ ansible_user }}"
+  tasks:
+    - name: perform system update
+      become: true
+      package:
+        name: "*"
+        state: latest
