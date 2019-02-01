@@ -10,3 +10,4 @@
   roles:
     - role: authorize_ssh
     - role: configure-admin-tools
+    - role: set-hostname
