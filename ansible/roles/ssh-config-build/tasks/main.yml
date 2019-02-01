@@ -22,7 +22,7 @@
           User {{ ansible_user }}
           Port {{ ansible_port }}
           ForwardAgent yes
-          IdentityFile {{ lookup('env','HOME') }}/.ssh/{{ environment_name }}-id_rsa
+          IdentityFile ~/.ssh/{{ environment_name }}-id_rsa
 
 
     # include env config file in main
