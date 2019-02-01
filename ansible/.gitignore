@@ -6,5 +6,8 @@ environments/*
 !environments/.gitkeep
 !README.md
 
+temp/*
+!temp/.gitkeep
+
 #  Test Stuff
 test.yml
