@@ -1,0 +1,8 @@
+---
+
+- name: set hostname on remote
+  become: true
+  template:
+    src: hostname.j2
+    dest: /etc/hostname
+    mode: 0644
