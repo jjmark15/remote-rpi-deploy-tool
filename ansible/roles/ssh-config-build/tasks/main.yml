@@ -16,7 +16,6 @@
         create: yes
         marker: "# {mark} ANSIBLE MANAGED BLOCK {{ inventory_hostname }}"
         block: |
-
           Host {{ environment_name }}-{{ inventory_hostname }}
           Hostname {{ ansible_host }}
           User {{ ansible_user }}
